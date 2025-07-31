@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_location_app/ui/home_page/widgets/home_view_model.dart';
 import 'package:flutter_location_app/ui/home_page/widgets/search_item.dart';
 import 'package:flutter_location_app/ui/widgets/search_appbar.dart';
 import 'package:flutter_location_app/ui/home_page/widgets/homepage_title.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final homeState = ref.watch(homeViewModelProvider);
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
         backgroundColor: Color(0xffE5F4FF),
-        appBar: homepageAppbar(),
+        appBar: SearchAppbar(),
         body: Stack(
           children: [
             Column(
@@ -29,9 +33,10 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     child: ListView.builder(
-                      itemCount: 10,
+                      itemCount: homeState.location.length,
                       itemBuilder: (context, index) {
-                        return searchItem(context);
+                        final location = homeState.location[index];
+                        return SearchItem(location: location, index: index);
                       },
                     ),
                   ),

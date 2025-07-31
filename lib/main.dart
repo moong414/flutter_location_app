@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_location_app/ui/home_page/home_page.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-          fontFamily: 'NotoSans', scaffoldBackgroundColor: Colors.white),
+        fontFamily: 'NotoSans', scaffoldBackgroundColor: Colors.white),
       home: HomePage(),
     );
   }

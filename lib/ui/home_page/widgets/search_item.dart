@@ -1,12 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_location_app/model/location.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_location_app/ui/detail_page/detail_page.dart';
+import 'package:flutter_location_app/ui/home_page/widgets/home_view_model.dart';
 
-GestureDetector searchItem(BuildContext context) {
+class SearchItem extends ConsumerWidget {
+  final Location location;
+  final int index;
+  const SearchItem({Key? key, required this.location, required this.index})
+    : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final homeState = ref.watch(homeViewModelProvider);
+
     return GestureDetector(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context){
-          return DetailPage();
-        }));
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return DetailPage();
+            },
+          ),
+        );
       },
       child: Container(
         margin: EdgeInsets.only(bottom: 20),
@@ -25,7 +42,7 @@ GestureDetector searchItem(BuildContext context) {
                 borderRadius: BorderRadius.circular(30),
               ),
               child: Text(
-                '공공, 사회기관 > 특별, 광역시청',
+                homeState.location[index].category,
                 style: TextStyle(
                   color: Color(0xff999999),
                   fontWeight: FontWeight.w500,
@@ -35,12 +52,12 @@ GestureDetector searchItem(BuildContext context) {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-              child: Text('부산광역시청', style: TextStyle(fontSize: 16)),
+              child: Text(homeState.location[index].title, style: TextStyle(fontSize: 16)),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Text(
-                '부산광역시 연제구 중앙대로 1001 부산광역시청',
+                homeState.location[index].address,
                 style: TextStyle(fontSize: 13),
               ),
             ),
@@ -49,3 +66,4 @@ GestureDetector searchItem(BuildContext context) {
       ),
     );
   }
+}
