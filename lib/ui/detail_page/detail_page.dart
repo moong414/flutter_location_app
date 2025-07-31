@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_location_app/ui/detail_page/widgets/review_item.dart';
 
 class DetailPage extends StatelessWidget {
   @override
@@ -35,7 +36,7 @@ class DetailPage extends StatelessWidget {
             child: ListView.builder(
               itemCount: 10,
               itemBuilder: (context, index) {
-                return Text('dddd');
+                return reviewItem();
               },
             ),
           ),
@@ -43,4 +44,6 @@ class DetailPage extends StatelessWidget {
       ),
     );
   }
+
+  
 }

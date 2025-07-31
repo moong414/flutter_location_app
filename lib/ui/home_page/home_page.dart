@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_location_app/home_page/widgets/search_item.dart';
-import 'package:flutter_location_app/widgets/search_appbar.dart';
-import 'package:flutter_location_app/home_page/widgets/homepage_title.dart';
+import 'package:flutter_location_app/ui/home_page/widgets/search_item.dart';
+import 'package:flutter_location_app/ui/widgets/search_appbar.dart';
+import 'package:flutter_location_app/ui/home_page/widgets/homepage_title.dart';
 
 class HomePage extends StatelessWidget {
   @override

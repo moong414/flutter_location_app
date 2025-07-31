@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_location_app/detail_page/detail_page.dart';
+import 'package:flutter_location_app/ui/detail_page/detail_page.dart';
 
 GestureDetector searchItem(BuildContext context) {
     return GestureDetector(
