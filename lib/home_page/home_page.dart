@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_location_app/home_page/widgets/search_item.dart';
 import 'package:flutter_location_app/widgets/search_appbar.dart';
@@ -32,7 +31,7 @@ class HomePage extends StatelessWidget {
                     child: ListView.builder(
                       itemCount: 10,
                       itemBuilder: (context, index) {
-                        return searchItem();
+                        return searchItem(context);
                       },
                     ),
                   ),
