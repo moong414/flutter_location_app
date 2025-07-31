@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
                 homepageTitle(),
                 Expanded(
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(

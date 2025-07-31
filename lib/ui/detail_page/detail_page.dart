@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_location_app/ui/detail_page/widgets/bottom_review_text_box.dart';
 import 'package:flutter_location_app/ui/detail_page/widgets/review_item.dart';
 
 class DetailPage extends StatelessWidget {
@@ -25,7 +26,7 @@ class DetailPage extends StatelessWidget {
         body: Expanded(
           child: Container(
             margin: EdgeInsets.only(top: 20),
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.fromLTRB(20, 20, 20, 100),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
@@ -41,9 +42,8 @@ class DetailPage extends StatelessWidget {
             ),
           ),
         ),
+        bottomSheet: bottomReviewTextBox(),
       ),
     );
   }
-
-  
 }

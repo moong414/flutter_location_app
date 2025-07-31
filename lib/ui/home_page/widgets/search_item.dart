@@ -9,7 +9,8 @@ GestureDetector searchItem(BuildContext context) {
         }));
       },
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 20),
+        margin: EdgeInsets.only(bottom: 20),
+        padding: EdgeInsets.only(bottom: 20),
         decoration: BoxDecoration(
           border: Border(bottom: BorderSide(color: Color(0xffdddddd))),
         ),
