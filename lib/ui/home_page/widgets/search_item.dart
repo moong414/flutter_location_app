@@ -12,7 +12,7 @@ class SearchItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final homeState = ref.watch(homeViewModelProvider);
+    // final homeState = ref.watch(homeViewModelProvider); // 필요없음
 
     return GestureDetector(
       onTap: () {
@@ -42,7 +42,7 @@ class SearchItem extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(30),
               ),
               child: Text(
-                homeState.location[index].category,
+                location.category,
                 style: TextStyle(
                   color: Color(0xff999999),
                   fontWeight: FontWeight.w500,
@@ -52,14 +52,11 @@ class SearchItem extends ConsumerWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-              child: Text(homeState.location[index].title, style: TextStyle(fontSize: 16)),
+              child: Text(location.title, style: TextStyle(fontSize: 16)),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(
-                homeState.location[index].address,
-                style: TextStyle(fontSize: 13),
-              ),
+              child: Text(location.address, style: TextStyle(fontSize: 13)),
             ),
           ],
         ),

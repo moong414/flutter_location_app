@@ -1,14 +1,5 @@
-//  {
-//       "title": "<b>조선옥</b>",
-//       "link": "",
-//       "category": "한식>육류,고기요리",
-//       "description": "",
-//       "telephone": "",
-//       "address": "서울특별시 중구 을지로3가 229-1",
-//       "roadAddress": "서울특별시 중구 을지로15길 6-5",
-//       "mapx": "1269934389",
-//       "mapy": "375667917"
-//     }
+import 'package:html/parser.dart' as htmlParser;
+
 
 class Location {
   String title;
@@ -35,7 +26,7 @@ class Location {
 
   //1. fromJson 네임드 생성자 만들기
   Location.fromJson(Map<String, dynamic> map) : this(
-    title: map['title'],
+    title: htmlParser.parse(map['title']).body?.text ?? '',
     link: map['link'],
     category: map['category'],
     description: map['description'],

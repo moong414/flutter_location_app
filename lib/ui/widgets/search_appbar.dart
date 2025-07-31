@@ -26,7 +26,7 @@ class _SearchAppbarState extends ConsumerState<SearchAppbar> {
 
   //검색기능
   void onSearch(String text) {
-    //ToDo. 홈뷰모델의 searchLocation 메서드 호출!
+    print("검색어: $text");
     ref.read(homeViewModelProvider.notifier).searchLocation(text);
   }
 
