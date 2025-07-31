@@ -1,6 +1,8 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_location_app/home_page/widgets/search_item.dart';
+import 'package:flutter_location_app/widgets/search_appbar.dart';
+import 'package:flutter_location_app/home_page/widgets/homepage_title.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -11,82 +13,27 @@ class HomePage extends StatelessWidget {
       },
       child: Scaffold(
         backgroundColor: Color(0xffE5F4FF),
-        appBar: AppBar(
-          backgroundColor: Color(0xffE5F4FF),
-          title: Container(
-            padding: EdgeInsets.only(left: 20),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(50),
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0x26000000),
-                  offset: Offset(2, 2),
-                  blurRadius: 2,
-                ),
-              ],
-            ),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: '어디로 갈까요?',
-                hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
-                border: InputBorder.none,
-              ),
-            ),
-          ),
-          actions: [
-            GestureDetector(
-              onTap: () {},
-              child: Container(
-                width: 50,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Color(0xff37495B),
-                  borderRadius: BorderRadius.circular(50),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color(0x26000000),
-                      offset: Offset(2, 2),
-                      blurRadius: 2,
-                    ),
-                  ],
-                ),
-                child: Icon(Icons.gps_fixed, color: Colors.white),
-              ),
-            ),
-            SizedBox(width: 20),
-          ],
-        ),
+        appBar: homepageAppbar(),
         body: Stack(
           children: [
             Column(
               children: [
-                Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.all(40),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '간편하게 검색하세요!',
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: Color(0xff36495b),
-                        ),
-                      ),
-                      Text('우리 지역 검색 앱', style: TextStyle(fontSize: 22, color: Color(0xff36495b), fontWeight: FontWeight.w900)),
-                    ],
-                  ),
-                ),
-        
+                homepageTitle(),
                 Expanded(
                   child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(20),
                       ),
+                    ),
+                    child: ListView.builder(
+                      itemCount: 10,
+                      itemBuilder: (context, index) {
+                        return searchItem();
+                      },
                     ),
                   ),
                 ),
