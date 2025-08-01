@@ -46,9 +46,10 @@ class ReviewRepository {
       final docs = querySnapshot.docs;
 
       return docs.map((doc) {
-        final data = doc.data() as Map<String, dynamic>;
+        final data = doc.data();
         return Review.fromJson(data);
       }).toList();
+      
     } catch (e) {
       print('리뷰 가져오기 실패: $e');
       return [];

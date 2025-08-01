@@ -23,6 +23,9 @@ class _BottomReviewTextBoxState extends ConsumerState<BottomReviewTextBox> {
 
   @override
   Widget build(BuildContext context) {
+    //스테이트 확인용
+    final state = ref.watch(reviewViewModelProvider);
+
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
       decoration: BoxDecoration(
@@ -73,6 +76,7 @@ class _BottomReviewTextBoxState extends ConsumerState<BottomReviewTextBox> {
                           mapy: widget.y,
                         );
                         if (success) {
+                          await reviewViewModel.searchLocation(widget.x, widget.y);
                           contentController.clear();
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text('리뷰가 등록되었습니다.')),
@@ -82,6 +86,8 @@ class _BottomReviewTextBoxState extends ConsumerState<BottomReviewTextBox> {
                             SnackBar(content: Text('리뷰 등록에 실패했습니다.')),
                           );
                         }
+
+
                       },
 
                       child: Container(

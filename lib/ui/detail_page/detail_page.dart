@@ -63,7 +63,7 @@ class _DetailPageState extends ConsumerState<DetailPage> {
               itemCount: reviews.length,
               itemBuilder: (context, index) {
                 String title = reviews[index].content;
-                String time = reviews[index].createdAt.toIso8601String();
+                String time = reviews[index].createdAt;
                 return reviewItem(title, time);
               },
             ),
