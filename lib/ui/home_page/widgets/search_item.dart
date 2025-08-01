@@ -12,8 +12,6 @@ class SearchItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final homeState = ref.watch(homeViewModelProvider); // 필요없음
-
     return GestureDetector(
       onTap: () {
         Navigator.push(

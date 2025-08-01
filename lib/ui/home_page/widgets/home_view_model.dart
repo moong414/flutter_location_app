@@ -13,22 +13,8 @@ class HomeState {
 class HomeViewModel extends Notifier<HomeState> {
   @override
   HomeState build() {
-    return HomeState([
-      Location(title: "조선옥",
-      link: "",
-      category: "한식>육류,고기요리",
-      description: "",
-      telephone: "",
-      address: "서울특별시 중구 을지로3가 229-1",
-      roadAddress: "서울특별시 중구 을지로15길 6-5",
-      mapx: "1269934389",
-      mapy: "375667917"),
-    ]);
+    return HomeState([]);
   }
-  // @override
-  // HomeState build() {
-  //   return HomeState([]);
-  // }
 
   Future<void> searchLocation(String query) async {
     final locationRepository = LocationRepository();
