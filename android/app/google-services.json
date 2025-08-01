@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "144583428047",
+    "project_id": "flutter-location-app-2344c",
+    "storage_bucket": "flutter-location-app-2344c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144583428047:android:e54914450a975ed26834ba",
+        "android_client_info": {
+          "package_name": "com.example.flutter_location_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOGn4EQxMJ7jhiwlw8DCUtF_lPu2QueAo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

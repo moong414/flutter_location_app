@@ -1,14 +1,21 @@
 plugins {
     id("com.android.application")
+    // START: FlutterFire Configuration
+    id("com.google.gms.google-services")
+    // END: FlutterFire Configuration
     id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+dependencies {
+  implementation(platform("com.google.firebase:firebase-bom:34.0.0"))
+}
+
 android {
     namespace = "com.example.flutter_location_app"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -24,8 +31,8 @@ android {
         applicationId = "com.example.flutter_location_app"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
+        minSdkVersion(23)
+        targetSdkVersion(33)
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
