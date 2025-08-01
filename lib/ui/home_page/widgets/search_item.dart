@@ -18,7 +18,7 @@ class SearchItem extends ConsumerWidget {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return DetailPage();
+              return DetailPage(location.mapx, location.mapy);
             },
           ),
         );

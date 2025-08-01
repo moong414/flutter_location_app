@@ -19,8 +19,7 @@ class ReviewViewModel extends Notifier<ReviewState> {
 
   Future<void> searchLocation(String x, String y) async {
     final reviewRepository = ReviewRepository();
-    final review = await reviewRepository.getOne(x, y);
-    final reviews = review != null ? <Review>[review] : <Review>[];
+    final reviews = await reviewRepository.getByLocation(x, y);
     state = ReviewState(reviews);
   }
 }

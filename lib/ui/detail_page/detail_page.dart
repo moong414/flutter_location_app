@@ -1,10 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_location_app/ui/detail_page/widgets/bottom_review_text_box.dart';
 import 'package:flutter_location_app/ui/detail_page/widgets/review_item.dart';
+import 'package:flutter_location_app/ui/detail_page/widgets/review_view_model.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DetailPage extends StatelessWidget {
+class DetailPage extends ConsumerStatefulWidget{
+  final String x;
+  final String y;
+  DetailPage(this.x, this.y);
+
+  @override
+  ConsumerState<DetailPage> createState() => _DetailPageState();
+}
+
+class _DetailPageState extends ConsumerState<DetailPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    // 뷰모델에서 좌표 기반 리뷰 검색 실행
+    Future.microtask(() {
+      ref.read(reviewViewModelProvider.notifier).searchLocation(widget.x, widget.y);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(reviewViewModelProvider);
+    final reviews = state.location;
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -35,14 +59,16 @@ class DetailPage extends StatelessWidget {
               ),
             ),
             child: ListView.builder(
-              itemCount: 10,
+              itemCount: reviews.length,
               itemBuilder: (context, index) {
-                return reviewItem();
+                String title = reviews[index].content;
+                String time = reviews[index].createdAt.toIso8601String();
+                return reviewItem(title, time);
               },
             ),
           ),
         ),
-        bottomSheet: bottomReviewTextBox(),
+        bottomSheet: BottomReviewTextBox(),
       ),
     );
   }

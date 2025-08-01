@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Container reviewItem() {
+Container reviewItem(String title, String time) {
   return Container(
     padding: EdgeInsets.only(bottom: 20),
     child: Column(
@@ -13,7 +13,7 @@ Container reviewItem() {
         ],),
         Padding(
           padding: const EdgeInsets.fromLTRB(8, 10, 8, 14),
-          child: Text('이안류에 휩쓸려갈뻔 했어요.', style: TextStyle(fontSize: 16, ),),
+          child: Text(title, style: TextStyle(fontSize: 16, ),),
         ),
         Container(
           width: double.infinity,
@@ -24,7 +24,7 @@ Container reviewItem() {
           ),
           child: Text(
             textAlign: TextAlign.right,
-            '2025-07-14 23:32:04 478149',
+            time,
             style: TextStyle(
               color: Color(0xff999999),
               fontWeight: FontWeight.w500,
