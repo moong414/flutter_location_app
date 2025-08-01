@@ -22,6 +22,23 @@ class ReviewViewModel extends Notifier<ReviewState> {
     final reviews = await reviewRepository.getByLocation(x, y);
     state = ReviewState(reviews);
   }
+
+  //insert
+  Future<bool> insert({
+    required String content,
+    required String createdAt,
+    required String mapx,
+    required String mapy,
+  }) async {
+    final repo = ReviewRepository();
+    return await repo.insert(
+      createdAt: createdAt,
+      content: content,
+      mapx: mapx,
+      mapy: mapy,
+    );
+  }
+
 }
 
 //3. 뷰모델 관리자 만들기

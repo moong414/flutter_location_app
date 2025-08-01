@@ -7,7 +7,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class DetailPage extends ConsumerStatefulWidget{
   final String x;
   final String y;
-  DetailPage(this.x, this.y);
+  final String title;
+  DetailPage({required this.x, required this.y, required this.title});
 
   @override
   ConsumerState<DetailPage> createState() => _DetailPageState();
@@ -39,7 +40,7 @@ class _DetailPageState extends ConsumerState<DetailPage> {
           backgroundColor: Color(0xffE5F4FF),
           centerTitle: true,
           title: Text(
-            '부산 광역시청',
+            widget.title,
             style: TextStyle(
               fontSize: 18,
               color: Color(0xff36495B),
@@ -68,7 +69,7 @@ class _DetailPageState extends ConsumerState<DetailPage> {
             ),
           ),
         ),
-        bottomSheet: BottomReviewTextBox(),
+        bottomSheet: BottomReviewTextBox(x: widget.x, y: widget.y),
       ),
     );
   }

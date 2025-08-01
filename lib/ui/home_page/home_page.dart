@@ -36,7 +36,7 @@ class HomePage extends ConsumerWidget {
                       itemCount: homeState.location.length,
                       itemBuilder: (context, index) {
                         final location = homeState.location[index];
-                        return SearchItem(location: location, index: index);
+                        return SearchItem(location: location, index: index,);
                       },
                     ),
                   ),

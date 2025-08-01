@@ -4,11 +4,10 @@ import 'package:flutter_location_app/model/review.dart';
 class ReviewRepository {
   // 1. insert 구현하기
   Future<bool> insert({
-    required String id,
     required String content,
-    required String mapX,
-    required String mapY,
     required String createdAt,
+    required String mapx,
+    required String mapy,
   }) async {
     try {
       FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -19,11 +18,10 @@ class ReviewRepository {
 
       // 생성할 데이터 만들기!
       final map = {
-        'title': id,
         'content': content,
-        'mapx': mapX,
-        'mapy': mapY,
         'createdAt': DateTime.now().toIso8601String(),
+        'mapx': mapx,
+        'mapy': mapy,
       };
       // 저장!
       await docRef.set(map);
