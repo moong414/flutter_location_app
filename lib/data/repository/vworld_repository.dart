@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
 
 class VWorldRepository {
-  final Dio _client = Dio(BaseOptions(
-    // 설정안할 시 실패 응답 시 throw
-    validateStatus: (status) => true,
-  ));
-
+  final Dio _client = Dio(
+    BaseOptions(
+      // 설정안할 시 실패 응답 시 throw
+      validateStatus: (status) => true,
+    ),
+  );
 
   Future<List<String>> findByLatLng({
     required double lat,
@@ -15,22 +16,23 @@ class VWorldRepository {
       'https://api.vworld.kr/req/data',
       queryParameters: {
         'request': 'GetFeature',
-        'data': 'LT_C_ADEMD_INFO',
         'key': 'DB2D9AAB-AAA3-3A9D-811E-FEE87CAD91F7',
-        'geomfilter': 'point($lat $lng)',
+        'data': 'LT_C_ADEMD_INFO',
+        'geomfilter': 'point($lng $lat)', // ✅ 소문자 point
         'geometry': 'false',
-        'size': 100, // Optional
+        'size': 100,
       },
     );
-    print('API 응답 전체: ${response.data}');
 
+    print('🌍 API 응답: ${response.data}');
 
     if (response.statusCode == 200 &&
         response.data['response']['status'] == 'OK') {
-      // 행정주소 외 정보는 쓰지 않아서 모델생성 X(개인취향)
-      // 써드파티 API(외부 API) 모델링 시 프로젝트에 외부 모델이 추가가되어 관리 힘듦
-      return List.of(response.data['response']['result']['featureCollection']
-              ['features'])
+      final features =
+          response.data['response']['result']['featureCollection']['features']
+              as List;
+
+      return features
           .map((e) => e['properties']['full_nm'].toString())
           .toList();
     }

@@ -11,14 +11,15 @@ class AddressViewModel extends AutoDisposeNotifier<List<String>> {
 
   final vWorldRepository = VWorldRepository();
 
-  Future<void> searchByAddress(double lat, double lng) async {
-     final result = await vWorldRepository.findByLatLng(lat: lat, lng: lng);
-      print('검색 결과: $result');  // 여기에 로그 찍기
+  Future<List> searchByAddress(double lat, double lng) async {
+    final result = await vWorldRepository.findByLatLng(lat: lat, lng: lng);
+      print('검색 결과: $result'); 
       state = result;
+      return result;
   }
 }
 
 // 3. 뷰모델 관리자 만들기
-final addressViewModel =
+final addressViewModelProvider =
     NotifierProvider.autoDispose<AddressViewModel, List<String>>(
         () => AddressViewModel());

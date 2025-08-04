@@ -33,15 +33,20 @@ class _SearchAppbarState extends ConsumerState<SearchAppbar> {
   }
 
   //좌표구하는 기능
-  Future<void> _loadMyLocation() async {
+  Future<void> findMyLocation() async {
     final position = await GeolocatorHelper.getPositon();
     if (position != null) {
       print("현재 위치: ${position.latitude}, ${position.longitude}");
 
       // ViewModel에 위치 전달
-      ref.read(addressViewModel.notifier).searchByAddress(position.latitude, position.longitude);
-      final addressList = ref.watch(addressViewModel);
+      final addressList = await ref.read(addressViewModelProvider.notifier).searchByAddress(position.latitude, position.longitude);
       print('나의 위치 $addressList');
+
+      if(addressList.isNotEmpty){
+        textEditingController.text = addressList.first;
+        ref.read(homeViewModelProvider.notifier).searchLocation(addressList.first);
+      }
+
     }else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("위치 권한이 필요합니다")),
@@ -80,7 +85,7 @@ class _SearchAppbarState extends ConsumerState<SearchAppbar> {
       actions: [
         GestureDetector(
           onTap: () {
-            _loadMyLocation();
+            findMyLocation();
           },
           child: Container(
             width: 50,

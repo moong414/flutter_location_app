@@ -24,6 +24,7 @@ class HomePage extends ConsumerWidget {
                 homepageTitle(),
                 Expanded(
                   child: Container(
+                    width: double.infinity,
                     padding: EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -32,7 +33,12 @@ class HomePage extends ConsumerWidget {
                         topRight: Radius.circular(20),
                       ),
                     ),
-                    child: ListView.builder(
+                    child: homeState.location.length == 0 ? 
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [Text('검색어를 입력하세요!', style: TextStyle(fontSize: 14, color: Colors.grey),)],)
+                    :
+                    ListView.builder(
                       itemCount: homeState.location.length,
                       itemBuilder: (context, index) {
                         final location = homeState.location[index];
