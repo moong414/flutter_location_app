@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_location_app/core/geolocator_helper.dart';
+import 'package:flutter_location_app/ui/home_page/widgets/address_view_model.dart';
 import 'package:flutter_location_app/ui/home_page/widgets/home_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -28,6 +30,23 @@ class _SearchAppbarState extends ConsumerState<SearchAppbar> {
   void onSearch(String text) {
     print("검색어: $text");
     ref.read(homeViewModelProvider.notifier).searchLocation(text);
+  }
+
+  //좌표구하는 기능
+  Future<void> _loadMyLocation() async {
+    final position = await GeolocatorHelper.getPositon();
+    if (position != null) {
+      print("현재 위치: ${position.latitude}, ${position.longitude}");
+
+      // ViewModel에 위치 전달
+      ref.read(addressViewModel.notifier).searchByAddress(position.latitude, position.longitude);
+      final addressList = ref.watch(addressViewModel);
+      print('나의 위치 $addressList');
+    }else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("위치 권한이 필요합니다")),
+      );
+    }
   }
 
   @override
@@ -61,6 +80,7 @@ class _SearchAppbarState extends ConsumerState<SearchAppbar> {
       actions: [
         GestureDetector(
           onTap: () {
+            _loadMyLocation();
           },
           child: Container(
             width: 50,
